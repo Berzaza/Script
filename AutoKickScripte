@@ -6,12 +6,13 @@ local date = os.date("!*t")
 local hour = (date.hour + TIME_ZONE) % 24
 local ampm = hour < 12 and "AM" or "PM"
 local timestamp = string.format("%02i:%02i %s", ((hour - 1) % 12) + 1, date.min, ampm)
-
+print("started")
 
 local plr = game.Players.LocalPlayer
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 HttpService = game:GetService("HttpService")
 Webhook_URLme = "https://discord.com/api/webhooks/1084344739043741796/oYB3V3dkFDIutTN_i2L_N2uwBo6nq1IHuYCBwEmTZoBzjmzO3C7jKNrip2uvJY1kyzAM"
+print("bruh")
 local blacklist = {
     
 }
@@ -47,6 +48,7 @@ if table.find(blacklist, hwid) then
 )
 
     else
+    print("Worked")
         local onexec = syn.request(
 	{
 		Url = Webhook_URLme,
