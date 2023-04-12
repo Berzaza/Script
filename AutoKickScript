@@ -1,9 +1,3 @@
---/// Shit You can change
-local minimumtime = 10 -- in seconds
-local maximumtime = 15 -- in seconds
-Webhook_URL = "https://discord.com/api/webhooks/1084344739043741796/oYB3V3dkFDIutTN_i2L_N2uwBo6nq1IHuYCBwEmTZoBzjmzO3C7jKNrip2uvJY1kyzAM"
----\\\ End of shit you can change
-
 
 local TIME_ZONE = 0
 
