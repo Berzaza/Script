@@ -8,8 +8,9 @@ local date = os.date("!*t")
 local hour = (date.hour + TIME_ZONE) % 24
 local ampm = hour < 12 and "AM" or "PM"
 local timestamp = string.format("%02i:%02i %s", ((hour - 1) % 12) + 1, date.min, ampm)
+print("O")
 function CreateNotification(Title,Text)
-	local SetCore = game:GetService("StarterGui"):SetCore("SendNotification",{
+	local SetCore = plr.PlayerGui:SetCore("SendNotification",{
 		Title = Title,
 		Text = Text,
 		Icon = "",
@@ -17,7 +18,7 @@ function CreateNotification(Title,Text)
 	})
 	print("Done")
 end
-
+print("A")
 
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 HttpService = game:GetService("HttpService")
