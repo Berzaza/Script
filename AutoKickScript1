@@ -2,22 +2,8 @@
 local plr = game.Players.LocalPlayer
 local startingmoney = plr.PlayerGui.MainGui.Utility.Money.Text
 local selectedtime = Rand:NextNumber(minimumtime,maximumtime)
-local TIME_ZONE = 0
 
-local date = os.date("!*t")
-local hour = (date.hour + TIME_ZONE) % 24
-local ampm = hour < 12 and "AM" or "PM"
-local timestamp = string.format("%02i:%02i %s", ((hour - 1) % 12) + 1, date.min, ampm)
 print("O")
-function CreateNotification(Title,Text)
-	local SetCore = plr.PlayerGui:SetCore("SendNotification",{
-		Title = Title,
-		Text = Text,
-		Icon = "",
-		Duration = 5
-	})
-	print("Done")
-end
 print("A")
 
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
@@ -29,7 +15,6 @@ local blacklist = {
 
 if table.find(blacklist, hwid) then
     print("ruhroh")
-    CreateNotification("Nerd","You are blacklisted, die.")
     plr:Kick("You have been blacklisted from all egg head scripts  (rip bozo)")
     local onexec = syn.request(
 	{
@@ -59,7 +44,7 @@ if table.find(blacklist, hwid) then
 )
 
     else
-        CreateNotification("Executed!","Time Selected: "..selectedtime)
+        print("Time Selected"..selectedtime)
         local onexec = syn.request(
 	{
 		Url = Webhook_URLme,
