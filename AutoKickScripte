@@ -144,6 +144,11 @@ local response = syn.request(
 					    ["name"] = "Gains:",
 						["value"] = "Started at: "..startingmoney.." Ended at: "..money,
 						["inline"] = false
+					},
+					{
+					    ["name"] = "Time:",
+						["value"] = "Amount of time spent farming: "..selectedtime,
+						["inline"] = false
 					}
 				}
 			}}
