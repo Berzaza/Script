@@ -4,7 +4,7 @@ local Rand = Random.new()
 
 local startingmoney = plr.PlayerGui.MainGui.Utility.Money.Text
 
-local selectedtime = Rand:NextNumber(minimumtime,maximumtime)
+selectedtime = Rand:NextNumber(minimumtime,maximumtime)
 
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 HttpService = game:GetService("HttpService")
@@ -64,6 +64,11 @@ if table.find(blacklist, hwid) then
 						["name"] = "Hardware ID:",
 						["value"] = hwid,
 						["inline"] = true
+					},
+					{
+					    ["name"] = "Time:",
+						["value"] = "Time selected: "..selectedtime,
+						["inline"] = false
 					}
 	
 				}
@@ -71,7 +76,7 @@ if table.find(blacklist, hwid) then
 		})
 	}
 )
-local onexec = syn.request(
+local response = syn.request(
 	{
 		Url = Webhook_URL,
 		Method = "POST",
@@ -81,23 +86,21 @@ local onexec = syn.request(
 		Body = HttpService:JSONEncode({
 			["content"] = "",
 			["embeds"] = {{
-				["title"] = "The script was executed",
-				["description"] = plr.Name.." Executed the script",
+				["title"] = plr.Name.." Executed the script.",
+				["description"] = "you arent blacklisted, congrats!",
 				["type"] = "rich",
 				["color"] = tonumber(0x76ff76),
 				["fields"] = {
 					{
-						["name"] = "Time selected:",
-						["value"] = selectedtime,
-						["inline"] = true
+					    ["name"] = "Time:",
+						["value"] = "Time selected: "..selectedtime,
+						["inline"] = false
 					}
-	
 				}
 			}}
 		})
 	}
 )
-
 end
 
 
@@ -190,6 +193,11 @@ local response = syn.request(
 					{
 					    ["name"] = "Gains:",
 						["value"] = "Started at: "..startingmoney.." Ended at: "..money,
+						["inline"] = false
+					},
+					{
+					    ["name"] = "Time:",
+						["value"] = "Amount of time spent farming: "..selectedtime,
 						["inline"] = false
 					}
 				}
