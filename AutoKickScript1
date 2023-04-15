@@ -1,8 +1,9 @@
 
 local plr = game.Players.LocalPlayer
 local startingmoney = plr.PlayerGui.MainGui.Utility.Money.Text
+print("Hi!")
 local selectedtime = Rand:NextNumber(minimumtime,maximumtime)
-
+print("???")
 print("O")
 print("A")
 
