@@ -1,5 +1,6 @@
-
+print("GOT LOADSTRING")
 local plr = game.Players.LocalPlayer
+print("Really")
 local startingmoney = plr.PlayerGui.MainGui.Utility.Money.Text
 print("Hi!")
 local selectedtime = Rand:NextNumber(minimumtime,maximumtime)
